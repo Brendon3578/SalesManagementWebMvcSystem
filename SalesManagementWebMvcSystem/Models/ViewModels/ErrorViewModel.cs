@@ -1,4 +1,4 @@
-namespace SalesManagementWebMvcSystem.Models
+namespace SalesManagementWebMvcSystem.Models.ViewModels
 {
     public class ErrorViewModel
     {
