@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SalesManagementWebMvcSystem.Data;
 namespace SalesManagementWebMvcSystem
 {
@@ -8,8 +7,11 @@ namespace SalesManagementWebMvcSystem
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
             builder.Services.AddDbContext<SalesManagementWebMvcSystemContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("SalesManagementWebMvcSystemContext") ?? throw new InvalidOperationException("Connection string 'SalesManagementWebMvcSystemContext' not found.")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SalesManagementWebMvcSystemContext") ?? throw new InvalidOperationException("Connection string 'SalesManagementWebMvcSystemContext' not found."),
+                    builder => builder.MigrationsAssembly("SalesManagementWebMvcSystem")
+                    ));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

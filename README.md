@@ -67,6 +67,20 @@ As entidades `Department`, `Seller` e `SalesRecord` são mapeadas para tabelas n
    dotnet run
    ```
 
+## Criando Migrations
+
+Durante o desenvolvimento da aplicação, foi utilizado o conceito de Mirations para manter a rastreabilidade de mudanças das entidades feito no banco de dados do SQL Server
+
+Aqui estão alguns comandos utilizados:
+
+```bash
+# Criar nova migration chamada 'Initial'
+Add-Migration Initial
+
+# Criar o schema no banco a partir da migração
+Update-Database
+```
+
 ---
 
 <h3 align="center">
