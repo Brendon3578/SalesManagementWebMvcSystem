@@ -13,8 +13,11 @@ namespace SalesManagementWebMvcSystem
                     builder => builder.MigrationsAssembly("SalesManagementWebMvcSystem")
                     ));
 
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<SeedingService>();
 
             var app = builder.Build();
 
@@ -24,6 +27,20 @@ namespace SalesManagementWebMvcSystem
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var seedingService = services.GetRequiredService<SeedingService>();
+                    seedingService.Seed();
+                }
+                catch (Exception ex)
+                {
+                    // Log de erro (opcional)
+                    Console.WriteLine($"Erro ao popular o banco de dados: {ex.Message}");
+                }
             }
 
             app.UseHttpsRedirection();
