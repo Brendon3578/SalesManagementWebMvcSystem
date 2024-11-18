@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SalesManagementWebMvcSystem.Data;
+using SalesManagementWebMvcSystem.Services;
 namespace SalesManagementWebMvcSystem
 {
     public class Program
@@ -18,6 +19,7 @@ namespace SalesManagementWebMvcSystem
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<SeedingService>();
+            builder.Services.AddScoped<SellerService>();
 
             var app = builder.Build();
 
