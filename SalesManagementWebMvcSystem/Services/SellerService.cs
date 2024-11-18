@@ -16,7 +16,6 @@ namespace SalesManagementWebMvcSystem.Services
 
         public void Insert(Seller newSeller)
         {
-            newSeller.Department = _context.Department.First();
             _context.Add(newSeller);
             _context.SaveChanges();
         }

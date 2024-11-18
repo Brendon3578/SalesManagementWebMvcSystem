@@ -12,8 +12,8 @@ using SalesManagementWebMvcSystem.Data;
 namespace SalesManagementWebMvcSystem.Migrations
 {
     [DbContext(typeof(SalesManagementWebMvcSystemContext))]
-    [Migration("20241116003650_OtherEntities")]
-    partial class OtherEntities
+    [Migration("20241118155915_InitialEntities")]
+    partial class InitialEntities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
