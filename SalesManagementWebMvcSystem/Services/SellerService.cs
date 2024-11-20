@@ -19,5 +19,14 @@ namespace SalesManagementWebMvcSystem.Services
             _context.Add(newSeller);
             _context.SaveChanges();
         }
+
+        public Seller FindById(int id) => _context.Seller.First(x => x.Id == id);
+
+        public void Remove(int id)
+        {
+            var s = _context.Seller.Find(id);
+            _context.Seller.Remove(s);
+            _context.SaveChanges();
+        }
     }
 }
