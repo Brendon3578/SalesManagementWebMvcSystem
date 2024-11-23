@@ -1,4 +1,5 @@
-﻿using SalesManagementWebMvcSystem.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SalesManagementWebMvcSystem.Data;
 using SalesManagementWebMvcSystem.Models;
 
 namespace SalesManagementWebMvcSystem.Services
@@ -20,7 +21,12 @@ namespace SalesManagementWebMvcSystem.Services
             _context.SaveChanges();
         }
 
-        public Seller FindById(int id) => _context.Seller.First(x => x.Id == id);
+        public Seller? FindById(int id)
+        {
+            return _context.Seller
+                .Include(obj => obj.Department)
+                .FirstOrDefault(obj => obj.Id == id);
+        }
 
         public void Remove(int id)
         {
